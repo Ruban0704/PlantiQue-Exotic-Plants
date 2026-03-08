@@ -1,7 +1,9 @@
-<<<<<<< HEAD
 # Plantique Exotic Plants 🌿
 
 This is a simple front-end eCommerce website for exotic plants.
+
+## Live Demo
+https://ruban0704.github.io/PlantiQue-Exotic-Plants/
 
 ## Features
 - Home page
@@ -17,6 +19,3 @@ This is a simple front-end eCommerce website for exotic plants.
 
 ## Author
 Ruban Kumar
-=======
-Green-plants
->>>>>>> 6d84a87 (fixed home link)
