@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Cart | Natural Home Decorations</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">Your Cart</h1>
+      <nav class="nav">
+        <a href="basic.html">🏠 Back to Shop</a>
+        <button id="dark-mode-toggle" class="dark-mode-btn" title="Toggle Dark Mode">🌙</button>
+      </nav>
+    </div>
+  </header>
+
+  <main class="cart-section">
+    <h2>Your Shopping Cart</h2>
+    <div id="cart-items" class="cart-items"></div>
+    <div class="cart-summary">
+      <h3>Total: <span id="cart-total">₹0</span></h3>
+      <button id="buy-now">Buy Now</button>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <p>© 2025 Natural Home Decorations | Contact: 
+      <a href="mailto:natural@gmail.com">natural@gmail.com</a>
+    </p>
+  </footer>
+
+  <script src="cart.js"></script>
+  <script>
+    // Dark mode initialization
+    document.addEventListener('DOMContentLoaded', () => {
+      const darkModeToggle = document.getElementById('dark-mode-toggle');
+      const darkMode = localStorage.getItem('darkMode') === 'true';
+      
+      if (darkMode) {
+        document.body.classList.add('dark-mode');
+        darkModeToggle.textContent = '☀️';
+      }
+      
+      darkModeToggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        const isDarkMode = document.body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+        darkModeToggle.textContent = isDarkMode ? '☀️' : '🌙';
+      });
+    });
+  </script>
+</body>
+</html>
