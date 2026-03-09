@@ -12,15 +12,16 @@
         <h1 class="logo">Your Cart</h1>
         <nav class="nav">
           <a href="index.html">🏠 Back to Shop</a>
-          <button
-            id="dark-mode-toggle"
-            class="dark-mode-btn"
-            title="Toggle Dark Mode"
-          >
-            🌙
-          </button>
+          <button id="dark-mode-toggle" class="dark-mode-btn" title="Toggle Dark Mode">🌙</button>
         </nav>
+        <div class="header-controls">
+          <button id="dark-mode-toggle-mobile" class="dark-mode-btn" title="Toggle Dark Mode">🌙</button>
+          <button class="hamburger" id="hamburger">☰</button>
+        </div>
       </div>
+      <nav class="mobile-nav" id="mobile-nav">
+        <a href="index.html">🏠 Back to Shop</a>
+      </nav>
     </header>
 
     <main class="cart-section">
@@ -41,14 +42,31 @@
 
     <script src="cart.js"></script>
     <script>
-      // Dark mode initialization
+      // Mobile nav and dark mode initialization
       document.addEventListener("DOMContentLoaded", () => {
+        const hamburger = document.getElementById("hamburger");
+        const mobileNav = document.getElementById("mobile-nav");
         const darkModeToggle = document.getElementById("dark-mode-toggle");
+        const darkModeToggleMobile = document.getElementById("dark-mode-toggle-mobile");
         const darkMode = localStorage.getItem("darkMode") === "true";
+
+        if (hamburger && mobileNav) {
+          hamburger.addEventListener("click", () => {
+            mobileNav.classList.toggle("open");
+          });
+
+          // Close nav when clicking a link
+          mobileNav.addEventListener("click", (e) => {
+            if (e.target.tagName === "A") {
+              mobileNav.classList.remove("open");
+            }
+          });
+        }
 
         if (darkMode) {
           document.body.classList.add("dark-mode");
           darkModeToggle.textContent = "☀️";
+          if (darkModeToggleMobile) darkModeToggleMobile.textContent = "☀️";
         }
 
         darkModeToggle.addEventListener("click", () => {
@@ -56,7 +74,18 @@
           const isDarkMode = document.body.classList.contains("dark-mode");
           localStorage.setItem("darkMode", isDarkMode);
           darkModeToggle.textContent = isDarkMode ? "☀️" : "🌙";
+          if (darkModeToggleMobile) darkModeToggleMobile.textContent = isDarkMode ? "☀️" : "🌙";
         });
+
+        if (darkModeToggleMobile) {
+          darkModeToggleMobile.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+            const isDarkMode = document.body.classList.contains("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode);
+            darkModeToggle.textContent = isDarkMode ? "☀️" : "🌙";
+            darkModeToggleMobile.textContent = isDarkMode ? "☀️" : "🌙";
+          });
+        }
       });
     </script>
   </body>
